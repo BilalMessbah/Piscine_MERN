@@ -6,7 +6,7 @@ const dbName = 'api';
 const assert = require('assert');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 MongoClient.connect(url, function (err, client) {
     assert.equal(null, err);
@@ -28,13 +28,16 @@ MongoClient.connect(url, function (err, client) {
             },
             password: {
                 type: String,
+                unique: true,
                 required: true,
+                trim: true
             },
             type: {
                 type: Boolean,
                 required: true,
             }
         });
+
         var User = mongoose.model('users', UserSchema);
         module.exports = User;
 
@@ -51,9 +54,9 @@ MongoClient.connect(url, function (err, client) {
             //use schema.create to insert data into the db
             User.create(userData, function (err, user) {
                 if (err) {
-                    return err;
+                    console.log('une erreur');
                 } else {
-                    return res.redirect('/register');
+                    console.log('pas derreurs');
                 }
             });
         }
