@@ -53,6 +53,7 @@ export default class register extends Component {
         console.log(registerPost);
         //window.location = "/";
     }
+
     render() {
         return (
             <div className="container">
